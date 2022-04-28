@@ -211,5 +211,24 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+    'debug_blacklist'=>[
+        '_ENV' =>[
+            'MPESA_CONSUMER_KEY',
+           'MPESA_CONSUMER_SECRET',
+            'MPESA_SHORTCODE',
+            'MPESA_STK_SHORTCODE',
+            'MPESA_ENV',
+            'MPESA_TEST_MSISDN',
+            'MPESA_TEST_URL',
+            'MPESA_PASSKEY',
+            'MPESA_B2C_PASSWORD'
+
+
+        ]
+
+
+
+
+    ]
 
 ];
