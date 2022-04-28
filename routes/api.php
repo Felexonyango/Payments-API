@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\payments\MpesaController;
+use App\Http\Controllers\payments\MpesaResponseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/getToken', [MpesaController::class, 'getAccessToken']);
+Route::post('/validation', [MpesaController::class, 'MpesaRegisterurl']);
+Route::post('/confirmation', [MpesaController::class, 'MpesaRegisterurl']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
