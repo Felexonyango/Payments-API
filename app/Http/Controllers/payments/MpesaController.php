@@ -147,4 +147,24 @@ class MpesaController extends Controller
      curl_close($curl);
      return $curl_response;
     }
+    public function b2cRequest(Request $request)
+    {
+        $curl_post_data = array(
+            'InitiatorName' => env('MPESA_B2C_INITIATOR'),
+            'SecurityCredential' => env('MPESA_B2C_PASSOWRD'),
+            'CommandID' => 'SalaryPayment',
+            'Amount' => $request->amount,
+            'PartyA' => env('MPESA_SHORTCODE'),
+            'PartyB' => $request->phone,
+            'Remarks' => $request->remarks,
+            'QueueTimeOutURL' => env('MPESA_TEST_URL') . '/b2ctimeout',
+            'ResultURL' => env('MPESA_TEST_URL') . '/b2ccallback',
+            'Occasion' => $request->occasion
+          );
+
+        $res = $this->makeHttp('/b2c/v1/paymentrequest', $curl_post_data);
+
+        return $res;
+    }
+    
 }

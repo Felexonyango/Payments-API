@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/getToken', [MpesaController::class, 'getAccessToken']);
 Route::post('/stkpush', [MpesaController::class, 'stkPush']);
 Route::post('/register', [MpesaController::class, 'MpesaRegisterurl']);
-Route::post('/transaction/confirmation', [MpesaController::class, 'mpesaConfirmation']);
-
+Route::post('/confirmation', [MpesaController::class, 'mpesaConfirmation']);
+Route::post('/b2cendpoint', [MpesaController::class, 'b2cRequest']);
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
