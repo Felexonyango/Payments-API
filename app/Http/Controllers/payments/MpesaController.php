@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\payments;
 use Carbon\Carbon;
-use App\Http\Controllers\Controller;
+use App\Models\MpesaTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+
 
 class MpesaController extends Controller
 {
@@ -83,10 +86,32 @@ class MpesaController extends Controller
 
         return $response;
     }
+//confirmation from mpesa 
+    public function mpesaConfirmation(Request $request){
+        $content = json_decode($request->getContent());
 
+        $mpesa = new MpesaTransaction();
+        $mpesa->TransactionType = $content->TransactionType;
+        $mpesa->TransactionID = $content->TransID;
+        $mpesa->TransTime = $content->TransTime;
+        $mpesa->BusinessShortCode = $content->BusinessShortCode;
+        $mpesa->BillRefNumber = $content->BillRefNumber;
+        $mpesa->InvoiceNumber = $content->InvoiceNumber;
+        $mpesa->OrgAccountBalance = $content->OrgAccountBalance;
+        $mpesa->ThirdPartyTransID = $content->ThirdPartyTransID;
+        $mpesa->MSISDN = $content->MSISDN;
+        $mpesa->FirstName = $content->FirstName;
+        $mpesa->MiddleName = $content->MiddleName;
+        $mpesa->LastName = $content->LastName;
+        $mpesa->save();
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/xml; charset=utf-8');
+        $response->setContent(json_encode([
+            'C2BPaymentConfirmationResult' => 'Success'
+        ]));
 
-
-
+        return $response;
+    }
 
 
 //register url
@@ -99,7 +124,7 @@ class MpesaController extends Controller
             'ValidationURL' => env('MPESA_TEST_URL') . '/validation'
         );
 
-        $url = '/validation';
+        $url = '/stkpush/v1/processrequest';
         $response = $this->makeHttp($url, $body);
 
         return $response;

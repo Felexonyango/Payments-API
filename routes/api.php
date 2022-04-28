@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/getToken', [MpesaController::class, 'getAccessToken']);
 Route::post('/stkpush', [MpesaController::class, 'stkPush']);
-Route::post('/validation', [MpesaController::class, 'MpesaRegisterurl']);
-Route::post('/confirmation', [MpesaController::class, 'MpesaRegisterurl']);
+Route::post('/register', [MpesaController::class, 'MpesaRegisterurl']);
+Route::post('/transaction/confirmation', [MpesaController::class, 'mpesaConfirmation']);
 
 
 
