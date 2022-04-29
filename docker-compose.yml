@@ -1,0 +1,61 @@
+
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: app
+    tty: true
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:Felex@127.0.0.1:5432/daraja
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+
+  webserver:
+    image: nginx:stable
+    container_name: webserver
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+    volumes:
+      - ./:/var/www
+      - ./docker/app.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - app
+
+  db:
+    image: postgres:12
+    container_name: db
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: Felex
+      POSTGRES_USER: postgres
+      POSTGRES_DB: daraja
+    ports:
+      - "54320:5432"
+
+  dbtest:
+    image: postgres:12
+    container_name: dbtest
+    restart: always
+    volumes:
+      - db_data_test:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: testsecret
+      POSTGRES_USER: testuser
+      POSTGRES_DB: testdb
+    ports:
+      - "54321:5432"
+
+volumes:
+  db_data:
+  db_data_test:
