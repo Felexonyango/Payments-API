@@ -40,7 +40,9 @@ class FlutterwaveController extends Controller
         curl_close($curl);
         $res = json_decode($response);
 
-        return [$res];
+        // return response [$res];
+        return response()->json(['success' =>true, 'data'=>[$res]]);
+       
     }
 
 
