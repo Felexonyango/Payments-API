@@ -56,8 +56,8 @@
             public_key: "FLWPUBK_TEST-4df11aef1d3e74c2bfbaec48a1c462de-X",
             tx_ref: "RX1_{{rand(0,time())}}",
             amount,
-            currency: "NGN",
-            country: "NG",
+            currency: "KES",
+            country: "KENYA",
             payment_options: " ",
             customer: {
               email,
