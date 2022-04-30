@@ -18,6 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('index', [PageController::class, 'index']);
-Route::post('/flutter',[FlutterwaveController::class,'index']);
+Route::post('verify-payment', [FlutterwaveController::class, 'verify']);

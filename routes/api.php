@@ -29,5 +29,4 @@ Route::post('/order/create',[PaypalPaymentController::class,'create']);
 Route::post('/order/capture/',[PaypalPaymentController::class,'capture']);
 
 //FlutterWave routes
-Route::post('/flutter',[FlutterwaveController::class,'index']);
 
