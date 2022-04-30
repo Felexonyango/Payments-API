@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class FlutterwaveController extends Controller
 {
-    public function index(Request $request){
+    public function verify(Request $request){
 
       $curl = curl_init();
 
