@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\payments\MpesaController;
 use App\Http\Controllers\PaypalPaymentController;
 use App\Http\Controllers\FlutterwaveController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,5 @@ Route::post('/order/capture/',[PaypalPaymentController::class,'capture']);
 
 //FlutterWave routes
 
+// Route::get('index', [PageController::class, 'index']);
+// Route::post('verify-payment', [FlutterwaveController::class, 'verify']);
