@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\payments\MpesaController;
 use App\Http\Controllers\PaypalPaymentController;
+use App\Http\Controllers\FlutterwaveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,11 +25,9 @@ Route::post('/b2cendpoint', [MpesaController::class, 'b2cRequest']);
 
 //paypal routes
 
+Route::post('/order/create',[PaypalPaymentController::class,'create']);
+Route::post('/order/capture/',[PaypalPaymentController::class,'capture']);
 
+//FlutterWave routes
+Route::post('/flutter',[FlutterwaveController::class,'index']);
 
-    Route::post('/order/create',[PaypalPaymentController::class,'create']);
-    Route::post('/order/capture/',[PaypalPaymentController::class,'capture']);
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
