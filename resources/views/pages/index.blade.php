@@ -73,6 +73,7 @@
 
               $.ajax({
                 type: "POST",
+                // url: "{{URL::to('/api/verify-payment')}}",
                 url: "{{URL::to('verify-payment')}}",
                 data: {
                     trans_id,
