@@ -33,4 +33,3 @@ Route::post('/order/capture/',[PaypalPaymentController::class,'capture']);
 
 Route::get('index', [PageController::class, 'index']);
 Route::post('verify-payment', [FlutterwaveController::class, 'verify']);
-Route::post('payment', [FlutterwaveController::class, 'index']);
